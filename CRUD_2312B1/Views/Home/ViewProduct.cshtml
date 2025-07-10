@@ -1,0 +1,64 @@
+﻿@model IEnumerable<CRUD_2312B1.Models.Product>
+
+@* @{
+    ViewData["Title"] = "Index";
+} *@
+
+<h1>Index</h1>
+
+<p>
+    <a asp-controller="Home" asp-action="AddProduct">Add New Product</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductDescription)
+            </th>  
+            <th>
+                @Html.DisplayNameFor(model => model.ProductImage)
+            </th> 
+            <th>
+                Category Name
+            </th>  
+            <th>
+               Action
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductDescription)
+            </td>
+            <td>
+                @* @Html.DisplayFor(modelItem => item.ProductImage) *@
+                    <img src="~/Image/@item.ProductImage" width="100px" />
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.CId)
+                     @* @item.CIdNavigation.CategoryName *@
+            </td>
+            <td>
+                <a asp-action="EditProduct" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="DetailsProduct" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="DeleteProduct" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
